@@ -37,9 +37,4 @@ else:
             st.success('Order(s) Updated!', icon=':material/thumb_up:')
         except:
             st.write('Something went wrong', icon=':material/thumb_down:')
-#else:
-    
 
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-#st.text(smoothiefroot_response.json())
-sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
