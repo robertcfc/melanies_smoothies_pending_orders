@@ -2,6 +2,7 @@
 import streamlit as st
 from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col, when_matched
+import requests
 
 # Write directly to the app
 st.title(":cup_with_straw: Pending Smoothie Orders")
@@ -10,9 +11,6 @@ st.write("Orders that need to be filled.")
 # Need this code for this to work in Streamlit
 cnx = st.connection("snowflake", type="snowflake")
 session=cnx.session()
-
-# Get the current credentials
-session = get_active_session()
 
 my_dataframe = session.table("smoothies.public.orders").filter(col("order_filled")==0)
 
@@ -41,3 +39,6 @@ else:
             st.write('Something went wrong', icon=':material/thumb_down:')
 #else:
     
+
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
